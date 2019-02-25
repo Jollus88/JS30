@@ -30,9 +30,9 @@
         // console.log(prom);
         const prom = fetch(endpoint)
             .then(blob => blob.json())
-            // .then(data => cities = data);
+            .then(data => cities = data);
             // grab a spread of the array data so this isn't made into an array of an array
-            .then(data => cities.push(...data));
+            // .then(data => cities.push(...data));
         
         const findMatches = function(wordToMatch, cities){
             return cities.filter(place => {
