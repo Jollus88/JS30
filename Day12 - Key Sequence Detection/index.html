@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Key Detection</title>
+		<script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+	</head>
+	<body>
+		<script>
+			const pressed = [];
+			const secretCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown',
+								'ArrowLeft','ArrowRight','ArrowLeft','ArrowRight',
+								'a','b','Enter'];
+			const secretCodeJoined = secretCode.join('');
+
+			// window.addEventListener('keyup', (e) => {
+			// 	pressed.push(e.key);
+			// 	pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+			// 	if(pressed.join('').includes(secretCodeJoined)){
+			// 		console.log('it matches! Trigger dem unicorns!');
+			// 		cornify_add();
+			// 	};
+			// });
+
+			// More 'elegant' way
+			const compareKeySequence = function(arr1, arr2){
+				if(arr1.length !== arr2.length){
+					return false;
+				};
+				for(i = arr1.length; i--;){
+					if(arr1[i] !== arr2[i]){
+						return false;
+					}
+				};
+				return true;
+			}
+
+			window.addEventListener('keyup', (e) => {
+				pressed.push(e.key);
+				pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+				console.log(pressed);
+				if(pressed.length == secretCode.length && compareKeySequence(pressed, secretCode)){
+					console.log('it matches! Trigger dem unicorns!');
+					cornify_add();
+				};
+			});
+
+		</script>
+	</body>
+</html>
